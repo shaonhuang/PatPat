@@ -41,7 +41,7 @@ def veri_code(length=4, width=160, height=40, size=28):
 
     # 创建Font对象
     file = os.path.dirname(os.path.abspath(__file__))
-    font = ImageFont.truetype(f'{file}/ubuntu.ttf', size)
+    font = ImageFont.truetype(f'{file}/arial.ttf', size)
 
     # 创建Draw对象
     draw = ImageDraw.Draw(image)
