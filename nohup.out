@@ -1,0 +1,33 @@
+Python 3.8.6 (v3.8.6:db455296be, Sep 23 2020, 13:31:39) 
+[Clang 6.0 (clang-600.0.57)] on darwin
+Type "help", "copyright", "credits" or "license" for more information.
+>>> 
+KeyboardInterrupt
+>>> 
+Watching for file changes with StatReloader
+Performing system checks...
+
+System check identified no issues (0 silenced).
+
+You have 22 unapplied migration(s). Your project may not work properly until you apply the migrations for app(s): admin, auth, comments, contenttypes, games, sessions.
+Run 'python manage.py migrate' to apply them.
+April 14, 2021 - 13:07:55
+Django version 3.2, using settings 'PatPat.settings'
+Starting development server at http://127.0.0.1:8001/
+Quit the server with CONTROL-C.
+['asgiref', 'Django', 'Pillow', 'PyMySQL', 'pytz', 'sqlparse']
+Package has been installed
+now run server cmd
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+Performing system checks...
+
+System check identified no issues (0 silenced).
+
+You have 22 unapplied migration(s). Your project may not work properly until you apply the migrations for app(s): admin, auth, comments, contenttypes, games, sessions.
+Run 'python manage.py migrate' to apply them.
+April 14, 2021 - 13:09:39
+Django version 3.2, using settings 'PatPat.settings'
+Starting development server at http://127.0.0.1:8001/
+Quit the server with CONTROL-C.
