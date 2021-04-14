@@ -10,7 +10,7 @@ reqs = subprocess.check_output([sys.executable, '-m', 'pip', 'freeze'])
 installed_packages = [r.decode().split('==')[0] for r in reqs.split()]
 
 # installation pcakage
-libs = ['PyMySQL', 'Pillow', 'Django']
+libs = ['PyMySQL', 'Pillow', 'Django', 'cryptography']
 print(installed_packages)
 try:
     for item in libs:
