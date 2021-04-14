@@ -2,6 +2,7 @@ import subprocess
 import sys
 import os
 import re
+
 # userage: python run.py 127.0.0.1 8001 customize IP and Port
 # run by defalut: python run.py
 
@@ -24,6 +25,14 @@ except:
     print("Failed SomeHow")
 print('now run server cmd')
 
+try:
+    os.system('python manage.py migrate')
+except:
+    print('migrate failed')
+try:
+    os.system("python manage.py createsuperuser --username=admin --email=admin@example.com --traceback")
+except:
+    print('createsuperuser failed')
 if len(sys.argv)>1 :
     if len(sys.argv) >2:
         pattern = re.compile('^((25[0-5]|2[0-4]\d|[01]?\d\d?)\.){3}(25[0-5]|2[0-4]\d|[01]?\d\d?)$')
