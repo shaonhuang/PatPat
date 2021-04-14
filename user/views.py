@@ -16,5 +16,7 @@ def captcha_img(request):
     stream = BytesIO()
     img, code = veri_code()
     img.save(stream, 'PNG')
+    #看验证码，测试用
+    # img.show()
     request.session['check_code'] = code
     return HttpResponse(stream.getvalue())
