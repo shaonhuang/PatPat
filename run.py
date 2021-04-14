@@ -24,7 +24,6 @@ try:
 except:
     print("Failed SomeHow")
 print('now run server cmd')
-
 try:
     os.system('python manage.py migrate')
 except:
