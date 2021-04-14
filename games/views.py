@@ -3,7 +3,9 @@ from django.shortcuts import render
 # Create your views here.
 from django.http import HttpResponse
 from .models import Gameinfo
-
+from django.http import JsonResponse
+import json
+from comments.models import comments
 
 def showgame1(request):
     return HttpResponse("下面是系统中所有的订单信息。。。")
@@ -17,19 +19,11 @@ def showgame(request):
     if ph:
         qs = qs.filter(game_id=ph)
 
-    retStr = ''
-    for game in qs:
-        for name,value in game.items():
-            retStr += f'{name} : {value} | '
+    gameinfo = list(qs)
 
-        # <br> 表示换行
-        retStr += '<br>'
+    return JsonResponse({'ret': 0, 'gameinfo': gameinfo})
 
-    return HttpResponse(retStr)
 
-from django.http import JsonResponse
-import json
-from comments.models import comments
 
 # Create your models here.
 def game_comment(request):

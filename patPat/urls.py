@@ -16,12 +16,12 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from django.conf.urls.static import static
-from user.views import userindex
+from user.views import userindex, captcha_img
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('index/', userindex),
     path('api/games/',include('games.urls')),
     path('api/user/',include('user.urls')),
-
+    path('captcha_img/', captcha_img, name='captcha_img'),
 
 ]
