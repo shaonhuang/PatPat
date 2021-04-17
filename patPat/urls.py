@@ -18,6 +18,7 @@ from django.urls import path, include
 from django.conf.urls.static import static
 from user.views import userindex, captcha_img
 from django.conf import settings
+from articles.views import showarticle
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -25,5 +26,6 @@ urlpatterns = [
     path('api/games/',include('games.urls')),
     path('api/user/',include('user.urls')),
     path('captcha_img/', captcha_img, name='captcha_img'),
+    path('article/', showarticle),
 
 ]+ static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
