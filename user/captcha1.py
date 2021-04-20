@@ -40,8 +40,12 @@ def veri_code(length=4, width=160, height=40, size=28):
     image = Image.new('RGB', (width, height), (255, 255, 255))
 
     # 创建Font对象
+    # 创建Font对象
     file = os.path.dirname(os.path.abspath(__file__))
-    font = ImageFont.truetype(f'{file}/arial.ttf', size)
+    file2 = '../arial.ttf'
+    # font = ImageFont.truetype(f'{file}/arial.ttf', size)
+    font = ImageFont.truetype(file2, size)
+    print(file)
 
     # 创建Draw对象
     draw = ImageDraw.Draw(image)
