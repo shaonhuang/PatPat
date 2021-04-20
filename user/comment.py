@@ -48,13 +48,17 @@ def listcomments(request):
     userid = request.session.get('_auth_user_id',None)
     ps = int(request.GET.get('pagesize', 10))
     pn = int(request.GET.get('pagenum', 1))
+    lci = request.GET.get('lastcommentindex', None)
     if gid:
         qs = qs.filter(game_id=gid)
     if userid:
         qs = qs.filter(user_id=userid)
 
     retlist = list(qs)
-    retlist = retlist[(pn - 1) * ps:pn * ps]
+    if lci:
+        retlist = retlist[int(lci):int(lci) + ps]
+    else:
+        retlist = retlist[(pn - 1) * ps:pn * ps]
     return JsonResponse({'ret': 0, 'retlist': retlist})
 
     #
