@@ -35,7 +35,8 @@ try:
 except:
     print('migrate failed')
 try:
-    os.system("python3 manage.py createsuperuser --username=admin --email=admin@example.com --traceback")
+    if '20.04.1-Ubuntu' not in os.system('uname -a'):
+        os.system("python3 manage.py createsuperuser --username=admin --email=admin@example.com --traceback")
 except:
     print('createsuperuser failed')
 if len(sys.argv)>1 :
