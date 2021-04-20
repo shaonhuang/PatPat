@@ -6,6 +6,12 @@ import re
 # userage: python3 run.py 127.0.0.1 8001 customize IP and Port
 # run by defalut: python3 run.py
 
+try:
+    if '20.04.1-Ubuntu' in os.system('uname -a'):
+        os.system('/etc/init.d/mysql start')
+except:
+    print('mysql start cmd failed')
+
 reqs = subprocess.check_output([sys.executable, '-m', 'pip', 'freeze'])
 installed_packages = [r.decode().split('==')[0] for r in reqs.split()]
 
