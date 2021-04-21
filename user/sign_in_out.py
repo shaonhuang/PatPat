@@ -33,7 +33,12 @@ def signin(request):
         else:
             return JsonResponse({'ret': 1, 'msg': '用户名或者密码错误'})
     else:
+        #print(request.session.get('check_code').lower())
+        #print(check_code and check_code.lower())
+
         return JsonResponse({'ret': 2, 'msg': '验证码错误'})
+
+
 
 # 登出处理
 def signout(request):
