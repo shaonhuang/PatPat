@@ -1,5 +1,5 @@
 from django.http import JsonResponse
-
+from . import views
 from django.contrib.auth import *
 # 认证模块
 from django.contrib import auth
@@ -11,7 +11,9 @@ from django.contrib.auth.models import User
 def registration(request):
     # 从 HTTP POST 请求中获取用户名、密码参数
     check_code = request.POST.get('check_code')
-    if check_code and check_code.lower() == request.session.get('check_code').lower():
+    hashkey = request.POST.get('hashkey')
+    #if check_code and check_code.lower() == request.session.get('check_code').lower():
+    if views.jarge_captcha(check_code, hashkey):
         userName = request.POST.get('username')
         passWord = request.POST.get('password')
 
