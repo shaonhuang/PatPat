@@ -1,7 +1,8 @@
 from django.http import JsonResponse
 import json
 from comments.models import comments
-
+from games.models import Gameinfo
+from django.contrib.auth.models import User
 
 def dispatcher(request):
     if 'usertype' not in request.session:
@@ -76,12 +77,13 @@ def listcomments(request):
 def addcomments(request):
 
     info    = request.params['data']
-
+    gameid = Gameinfo.objects.get(pk=info['game_id'])
+    userid = User.objects.get(pk=request.session.get('_auth_user_id'))
     # 从请求消息中 获取要添加客户的信息
     # 并且插入到数据库中
     # 返回值 就是对应插入记录的对象
-    record = comments.objects.create(game_id=info['game_id'] ,
-                            user_id=request.session.get('_auth_user_id') ,
+    record = comments.objects.create(game_id=gameid ,
+                            user_id=userid ,
                             comment_content=info['comment_content'],
                             comment_date=info['comment_date'],
                             rating=info['rating'])
@@ -106,7 +108,7 @@ def modifycomments(request):
             'msg': f'id 为`{commentid}`的评论不存在'
         }
 
-    if comment.user_id != int(request.session.get('_auth_user_id', None)):
+    if comment.user_id.id != int(request.session.get('_auth_user_id', None)):
         return JsonResponse ({
             'ret': 2,
             'msg': f'没有修改权限'
@@ -139,7 +141,7 @@ def deletecomments(request):
                 'msg': f'id 为`{commentid}`的评论不存在'
         }
 
-    if comment.user_id != int(request.session.get('_auth_user_id', None)):
+    if comment.user_id.id != int(request.session.get('_auth_user_id', None)):
         return JsonResponse ({
             'ret': 2,
             'msg': f'没有修改权限'

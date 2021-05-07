@@ -11,7 +11,7 @@ class comments(models.Model):
     game_id = models.ForeignKey(Gameinfo,on_delete=models.PROTECT)
 
     # 用户id
-    user_id = models.IntegerField(User,on_delete=models.PROTECT)
+    user_id = models.ForeignKey(User,on_delete=models.PROTECT)
 
     # 评论内容
     comment_content = models.CharField(max_length=500,blank=False)
