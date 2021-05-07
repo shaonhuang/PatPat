@@ -1,4 +1,6 @@
 from django.db import models
+from games.models import Gameinfo
+from django.contrib.auth.models import User
 
 # Create your models here.
 class comments(models.Model):
@@ -6,10 +8,10 @@ class comments(models.Model):
     comment_id = models.AutoField(primary_key=True)
 
     # 游戏id
-    game_id = models.IntegerField()
+    game_id = models.ForeignKey(Gameinfo,on_delete=models.PROTECT)
 
     # 用户id
-    user_id = models.IntegerField()
+    user_id = models.ForeignKey(User,on_delete=models.PROTECT)
 
     # 评论内容
     comment_content = models.CharField(max_length=500,blank=False)
