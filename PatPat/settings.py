@@ -37,7 +37,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'captcha',
     'games.apps.GamesConfig',
-    'comments.apps.CommentsConfig'
+    'comments.apps.CommentsConfig',
+    'articles.apps.ArticlesConfig'
 
 ]
 
@@ -125,3 +126,4 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS=[
     os.path.join(BASE_DIR,'static')
 ]
+

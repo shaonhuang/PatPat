@@ -3,6 +3,8 @@ import json
 from comments.models import comments
 from games.models import Gameinfo
 from django.contrib.auth.models import User
+from articles.models import article
+from articles.models import collectiona
 
 def dispatcher(request):
     if 'usertype' not in request.session:
@@ -151,3 +153,46 @@ def deletecomments(request):
         comment.delete()
 
         return JsonResponse({'ret': 0})
+
+def dianzan(request):
+    if 'usertype' not in request.session:
+        return JsonResponse({
+            'ret': 302,
+            'msg': '未登录',
+            'redirect': '/user/sign.html'},
+            status=302)
+    # 将请求参数统一放入request 的 params 属性中，方便后续处理
+
+
+    # 将 QuerySet 对象 转化为 list 类型
+    # 否则不能 被 转化为 JSON 字符串
+    cid = request.GET.get('article_id', None)
+    cm=article.objects.get(pk=cid)
+    cm.zan+=1
+    cm.save()
+    return JsonResponse ({
+            'ret': 0,
+            'msg': f'点赞成功'
+        })
+
+def quxiaodianzan(request):
+    if 'usertype' not in request.session:
+        return JsonResponse({
+            'ret': 302,
+            'msg': '未登录',
+            'redirect': '/user/sign.html'},
+            status=302)
+    # 将请求参数统一放入request 的 params 属性中，方便后续处理
+
+
+    # 将 QuerySet 对象 转化为 list 类型
+    # 否则不能 被 转化为 JSON 字符串
+    cid = request.GET.get('article_id', None)
+    cm=article.objects.get(pk=cid)
+    cm.zan-=1
+    cm.save()
+    return JsonResponse ({
+            'ret': 0,
+            'msg': f'取消点赞成功'
+        })
+
