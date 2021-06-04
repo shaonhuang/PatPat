@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.http import JsonResponse
-from.models import collectiona
+from.models import collectiona,article
 # Create your views here.
 from django.http import HttpResponse
 
@@ -37,3 +37,22 @@ def showcollections(request):
         urllist.append("static/templates/"+str(i["article_id"])+".html")
 
     return JsonResponse({'ret': 0, 'collectioninfo': collectioninfo, 'urllist':urllist})
+
+
+
+
+def getarticlelist(request):
+
+
+    qs= article.objects.values()
+    ps = int(request.GET.get('pagesize', 10))
+    pn = int(request.GET.get('pagenum', 1))
+    lci = request.GET.get('lastcommentindex', None)
+
+
+    retlist = list(qs)
+    if lci:
+        retlist = retlist[int(lci):int(lci) + ps]
+    else:
+        retlist = retlist[(pn - 1) * ps:pn * ps]
+    return JsonResponse({'ret': 0, 'retlist': retlist})

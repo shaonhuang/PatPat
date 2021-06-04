@@ -5,5 +5,5 @@ from . import views
 urlpatterns = [
     path('collections/',views.showcollections),
     re_path(r'^([0-9]{1})/$', views.showarticle),
-
+    path('list/',views.getarticlelist)
 ]

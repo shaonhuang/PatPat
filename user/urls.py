@@ -5,7 +5,8 @@ from . import sign_in_out
 from . import register
 urlpatterns=[
     path('comment',comment.dispatcher),
-    path('comment/zan',comment.dianzan),
+    path('article/zan',comment.dianzan),
+    path('article/quxiaozan',comment.quxiaodianzan),
     path('signin', sign_in_out.signin),
     path('signout', sign_in_out.signout),
     path('register', register.registration),

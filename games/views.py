@@ -75,3 +75,4 @@ def game_comment(request):
             'ret': 1,
             'msg': '缺少游戏id'
         })
+
