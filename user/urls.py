@@ -7,6 +7,8 @@ urlpatterns=[
     path('comment',comment.dispatcher),
     path('article/zan',comment.dianzan),
     path('article/quxiaozan',comment.quxiaodianzan),
+    path('article/collection',comment.addcollection),
+    path('article/cancelcollection',comment.canclecollection),
     path('signin', sign_in_out.signin),
     path('signout', sign_in_out.signout),
     path('register', register.registration),
