@@ -196,3 +196,51 @@ def quxiaodianzan(request):
             'msg': f'取消点赞成功'
         })
 
+def addcollection(request):
+    if 'usertype' not in request.session:
+        return JsonResponse({
+            'ret': 302,
+            'msg': '未登录',
+            'redirect': '/user/sign.html'},
+            status=302)
+    # 将请求参数统一放入request 的 params 属性中，方便后续处理
+
+    cid = request.GET.get('article_id', None)
+    articleid= cid
+    userid = request.session.get('_auth_user_id',None)
+
+    record = collectiona.objects.create(article_id=articleid,
+                                     user_id_id=userid,
+                                     )
+
+
+    return JsonResponse ({
+            'ret': 0,
+            'msg': f'收藏成功'
+        })
+
+def canclecollection(request):
+    if 'usertype' not in request.session:
+        return JsonResponse({
+            'ret': 302,
+            'msg': '未登录',
+            'redirect': '/user/sign.html'},
+            status=302)
+    # 将请求参数统一放入request 的 params 属性中，方便后续处理
+
+    articleid = request.GET.get('article_id', None)
+    userid = request.session.get('_auth_user_id', None)
+    try:
+        # 根据 id 从数据库中找到相应的客户记录
+        collectionsa = collectiona.objects.filter(article_id=articleid,user_id=userid)
+    except collectionsa.DoesNotExist:
+        return  {
+                'ret': 1,
+                'msg': f'id 为`{articleid}`的文章不存在'
+        }
+
+
+    # delete 方法就将该记录从数据库中删除了
+    collectionsa.delete()
+
+    return JsonResponse({'ret': 0})
