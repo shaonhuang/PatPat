@@ -32,11 +32,17 @@ def showcollections(request):
         collectioninfo = collectioninfo[int(lgd):int(lgd) + ps]
     else:
         collectioninfo = collectioninfo[(pn - 1) * ps:pn * ps]
-    urllist=[]
+    aid=[]
     for i in collectioninfo:
-        urllist.append("static/templates/"+str(i["article_id"])+".html")
+        aid.append(i["article_id"])
+    qs=[]
 
-    return JsonResponse({'ret': 0, 'collectioninfo': collectioninfo, 'urllist':urllist})
+    for i in aid:
+        qs.append(article.objects.values().get(article_id=i))
+    retlist = list(qs)
+
+    return JsonResponse({'ret': 0, 'collectioninfo': retlist})
+
 
 
 
